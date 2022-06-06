@@ -5,6 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Jost", sans-serif;
+  
 }
 
 html {
@@ -23,6 +24,7 @@ li {
  
 
 /* navbar style start  */
+
 
 .main-nav {
   width: 100%;

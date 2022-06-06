@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { FaInstagramSquare , FaFacebookSquare, FaYoutubeSquare} from "react-icons/fa";
 import "./navbar.css"
 import { GiHamburgerMenu} from "react-icons/gi";
+import TextField from '@mui/material/TextField';
 
 const Navbar = () => {
     const [showMediaIcons, setShowMediaIcons] = useState(false);
@@ -26,10 +27,10 @@ const Navbar = () => {
                       <a href='article'>Article</a>
                   </li>
                   <li>
-                      <a href=''>Admin</a>
+                      <a href='admin'>Admin</a>
                   </li>
                   <li>
-                      <a href=''>Serach</a>
+                  <TextField id="standard-basic" label="Search" variant="standard" className='searchbar' />
                   </li>
               </ul>
 
