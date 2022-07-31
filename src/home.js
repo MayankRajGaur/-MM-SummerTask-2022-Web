@@ -1,12 +1,12 @@
-import React from 'react'
-import {Grid} from '@mui/material'
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import "./App.css"
+import React,{useState, useEffect} from "react";
+import { Grid } from "@mui/material";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import "./App.css";
 
 // const bull = (
 //     <Box
@@ -17,229 +17,54 @@ import "./App.css"
 //     </Box>
 //   );
 
-const home = () => {
+export default function Home(){
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/articles/all")
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        setData(result);
+      });
+  }, []);
+
   return (
-      
-    <><div className='home-cards'>
-      <Grid container spacing={4} justifyContent="space-around">
-        <Grid item xs={12} sm={6} md={4}>
-          <Card sx={{ minWidth: 200 }}>
-            <CardContent>
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                Word of the Day
-              </Typography>
-              <Typography variant="h5" component="div">
-                {/* be{bull}nev{bull}o{bull}lent */}
-              </Typography>
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                adjective
-              </Typography>
-              <Typography variant="body2">
-                well meaning and kindly.
-                <br />
-                {'"a benevolent smile"'}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
-        </Grid>
-        <Grid item xs={3} sm={6} md={4}>
-          <Card sx={{ minWidth: 200 }}>
-            <CardContent>
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                Word of the Day
-              </Typography>
-              <Typography variant="h5" component="div">
-                {/* be{bull}nev{bull}o{bull}lent */}
-              </Typography>
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                adjective
-              </Typography>
-              <Typography variant="body2">
-                well meaning and kindly.
-                <br />
-                {'"a benevolent smile"'}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
-        </Grid>
-        <Grid item xs={3} sm={6} md={4}>
-          <Card sx={{ minWidth: 200 }}>
-            <CardContent>
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                Word of the Day
-              </Typography>
-              <Typography variant="h5" component="div">
-                {/* be{bull}nev{bull}o{bull}lent */}
-              </Typography>
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                adjective
-              </Typography>
-              <Typography variant="body2">
-                well meaning and kindly.
-                <br />
-                {'"a benevolent smile"'}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
-        </Grid>
-        <Grid item xs={3} sm={6} md={4}>
-          <Card sx={{ minWidth: 200 }}>
-            <CardContent>
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                Word of the Day
-              </Typography>
-              <Typography variant="h5" component="div">
-                {/* be{bull}nev{bull}o{bull}lent */}
-              </Typography>
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                adjective
-              </Typography>
-              <Typography variant="body2">
-                well meaning and kindly.
-                <br />
-                {'"a benevolent smile"'}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
-        </Grid>
-        <Grid item xs={3} sm={6} md={4}>
-          <Card sx={{ minWidth: 200 }}>
-            <CardContent>
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                Word of the Day
-              </Typography>
-              <Typography variant="h5" component="div">
-                {/* be{bull}nev{bull}o{bull}lent */}
-              </Typography>
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                adjective
-              </Typography>
-              <Typography variant="body2">
-                well meaning and kindly.
-                <br />
-                {'"a benevolent smile"'}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
-        </Grid>
-        <Grid item xs={3} sm={6} md={4}>
-          <Card sx={{ minWidth: 200 }}>
-            <CardContent>
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                Word of the Day
-              </Typography>
-              <Typography variant="h5" component="div">
-                {/* be{bull}nev{bull}o{bull}lent */}
-              </Typography>
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                adjective
-              </Typography>
-              <Typography variant="body2">
-                well meaning and kindly.
-                <br />
-                {'"a benevolent smile"'}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
-        </Grid>
-      </Grid>
+    <div>
+      {data.map((item) => {
+        return (
+          <div className="home-cards">
+            <Grid container spacing={4} justifyContent="space-around">
+              <Grid item xs={12} sm={6} md={4}>
+                <Card sx={{ minWidth: 200 }}>
+                  <CardContent>
+                    <Typography
+                      sx={{ fontSize: 14 }}
+                      color="text.secondary"
+                      gutterBottom
+                    >
+                      {item.Title}
+                    </Typography>
+                    <Typography variant="h5" component="div">
+                      {/* be{bull}nev{bull}o{bull}lent */}
+                    </Typography>
+                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                      adjective
+                    </Typography>
+                    <Typography variant="body2">
+                      {item.Content}
+                      <br />
+                      {'"a benevolent smile"'}
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small">Learn More</Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            </Grid>
+          </div>
+        );
+      })}
     </div>
-
-
-    <h2 className='trend'>Trending Section</h2>
-    <div className="trend-cards">
-      
-      <Grid container spacing={4} justifyContent="space-around">
-        <Grid item xs={12} sm={6} md={4}>
-          <Card sx={{ minWidth: 200 }}>
-            <CardContent>
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                Word of the Day
-              </Typography>
-              <Typography variant="h5" component="div">
-                {/* be{bull}nev{bull}o{bull}lent */}
-              </Typography>
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                adjective
-              </Typography>
-              <Typography variant="body2">
-                well meaning and kindly.
-                <br />
-                {'"a benevolent smile"'}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <Card sx={{ minWidth: 200 }}>
-            <CardContent>
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                Word of the Day
-              </Typography>
-              <Typography variant="h5" component="div">
-                {/* be{bull}nev{bull}o{bull}lent */}
-              </Typography>
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                adjective
-              </Typography>
-              <Typography variant="body2">
-                well meaning and kindly.
-                <br />
-                {'"a benevolent smile"'}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <Card sx={{ minWidth: 200 }}>
-            <CardContent>
-              <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                Word of the Day
-              </Typography>
-              <Typography variant="h5" component="div">
-                {/* be{bull}nev{bull}o{bull}lent */}
-              </Typography>
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                adjective
-              </Typography>
-              <Typography variant="body2">
-                well meaning and kindly.
-                <br />
-                {'"a benevolent smile"'}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
-        </Grid>
-      </Grid>
-    </div></>
-  )
-}
-
-export default home
+  );
+};

@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from './components/Navbar'
-import Home from './home'
+import Home from './Home'
 import {Grid} from '@mui/material'
 import {Routes,Route} from 'react-router-dom'
 import Article from './article.js'
